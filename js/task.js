@@ -266,3 +266,223 @@
 // console.log(isValidWalk(["n", "e", "s", "s", "w", "w", "n", "n", "e", "s"])); // true
 
 /* 20/11/2021 */
+// **********sol.1
+// Напишите цикл,  выводит такой треугольник.
+
+// const fn = (a) => {
+//   let b = "#";
+//   for (let i = 0; i < a; i++) {
+//     console.log(b);
+//     b += "#";
+//   }
+// };
+
+// fn(7);
+
+// **********sol.2
+// Напишите программу, которая выводит через console.log все числа от 1 до 100,с двумя исключениями.
+// Для чисел, нацело делящихся на 3, она должна выводить ‘Fizz’, а для чисел, делящихся на 5(но не на 3) – ‘Buzz’.
+// Когда сумеете – исправьте её так, чтобы она выводила «FizzBuzz» для всех чисел, которые делятся и на 3 и на 5.
+
+// const fn = (a) => {
+//   for (let i = 0; i <= a; i++) {
+//     if (i % 3 === 0 && i % 5 === 0) {
+//       console.log("FizzBuzz");
+//       continue;
+//     } else if (i % 3 === 0) {
+//       console.log("Fizz");
+//       continue;
+//     } else if (i % 5 === 0) {
+//       console.log("Buzz");
+//       continue;
+//     }
+//     console.log(i);
+//   }
+// };
+
+// const fn = (a) => {
+//   for (let i = 1; i <= a; i++) {
+//     console.log(
+//       i % 3 === 0 && i % 5 === 0
+//         ? "FizzBuzz"
+//         : i % 3 === 0
+//         ? "Fizz"
+//         : i % 5 === 0
+//         ? "Buzz"
+//         : i
+//     );
+//   }
+// };
+
+// fn(100);
+
+// **********sol.3
+// Напишите программу, создающую строку, содержащую решётку 8х8, в которой линии разделяются символами новой строки.
+// На каждой позиции либо пробел, либо #.
+// В результате должна получиться шахматная доска.
+
+// const fn = () => {
+//   for (let i = 0; i < 8; i++) {
+//     console.log(i % 2 === 0 ? "# # # # " : " # # # #");
+//   }
+// };
+
+// let fn3 = "";
+// for (let i = 0; i < 8; i++) {
+//   fn3 +=
+//     "# ".repeat(4).split("")[i & 1 ? "reverse" : "slice"]().join("") + "\n";
+// }
+// console.log(fn3);
+
+// fn();
+
+// sol.4
+// Напишите функцию min, принимающую два аргумента, и возвращающую минимальный из них.
+
+// const fn = (a, b) => {
+//   console.log(Math.min(a, b));
+// };
+
+// const fn = (a, b) => {
+//   if (a > b) {
+//     console.log(b);
+//   } else {
+//     console.log(a);
+//   }
+// };
+
+// const fn = (a, b) => {
+//   console.log(a > b ? b : a);
+// };
+
+// fn(0, 10); // 0
+// fn(0, -10); // -10
+
+// **********sol.5
+// Ноль чётный. Единица нечётная. У любого числа N чётность такая же, как у N - 2.
+// Напишите рекурсивную функцию isEven согласно этим правилам. Она должна принимать число и возвращать булевское значение.
+// Потестируйте её на 50 и 75. Попробуйте задать ей - 1. Почему она ведёт себя таким образом ? Можно ли её как - то исправить ?
+
+// моё решение 0о
+// const fn = (a) => (a % 2 === 0 ? true : false);
+
+// решение Наташи
+// const fn = (a) => (a === 0 ? true : fn1(a - 2));
+// const fn1 = (a) => (a === 1 ? false : fn(a - 2));
+
+// решение из учебника
+// function fn(n) {
+//   if (n === 0) return true;
+//   else if (n === 1) return false;
+//   else if (n < 0) return fn(-n);
+//   else return fn(n - 2);
+// }
+
+// console.log(fn(50));
+// console.log(fn(75));
+// console.log(fn(-1));
+
+// **********sol.6
+// Символ номер N строки можно получить, добавив к ней .charAt(N) ( “строчка”.charAt(5) )
+// – схожим образом с получением длины строки при помощи.length.
+// Возвращаемое значение будет строковым, состоящим из одного символа(к примеру, “к”).
+// У первого символа строки позиция 0, что означает, что у последнего символа позиция будет string.length – 1.
+// Другими словами, у строки из двух символов длина 2, а позиции её символов будут 0 и 1.
+// Напишите функцию countBs, которая принимает строку в качестве аргумента, и возвращает количество символов “B”, содержащихся в строке.
+// Затем напишите функцию countChar, которая работает примерно как countBs, только принимает второй параметр — символ,
+// который мы будем искать в строке(вместо того, чтобы просто считать количество символов “B”).
+// Для этого переделайте функцию countBs.
+
+// часть вторая задачи
+// const fn = (text, a) =>
+//   text.split("").reduce((acc, value) => (value === a ? acc + 1 : acc), 0);
+
+// console.log(fn("mommy washed the frame at school", "m"));
+
+// а теперь мы попробуем поискать по кол-ву букв
+// const fn = (text, n) => {
+//   const obj = text
+//     .split("")
+//     .filter((value) => value !== " ")
+//     .reduce((acc, tag) => {
+//       return {
+//         ...acc,
+//         [tag]: acc[tag] ? acc[tag] + 1 : 1,
+//       };
+//     }, {});
+
+//   for (const k of Object.keys(obj)) {
+//     if (obj[k] === n) {
+//       return k;
+//     }
+//   }
+// };
+
+// console.log(fn("mommy washed the frame at school", 4));
+
+// часть вторая задачи по учебнику
+// let result = "";
+// function countChar(b, n) {
+//   for (var i = 0; i < b.length; i++) {
+//     if (b.charAt(i) == n) {
+//       result += b.charAt(i);
+//     }
+//   }
+//   console.log(result.length);
+// }
+
+// countChar("mommy washed the frame at school", "m");
+
+// ********** задача с 'codewars'
+// Write a function that takes a string of parentheses, and determines if the order of the parentheses is valid.
+// The function should return true if the string is valid, and false if it's invalid.
+// Examples
+// "()"              =>  true
+// ")(()))"          =>  false
+// "("               =>  false
+// "(())((()())())"  =>  true
+// Constraints;
+// 0 <= input.length <= 100;
+
+// прошел но не все решения =(
+// const validParentheses = (parens) =>
+//   0 <= parens.length <= 100 &&
+//   parens.split("").filter((c) => c === "(").length ===
+//     parens.split("").filter((c) => c === ")").length;
+
+// решение Наташи
+// const validParentheses = (parens) => {
+//   let count = 0;
+//   for (let i = 0; i < parens.length && count >= 0; i += 1) {
+//     count += parens[i] === "(" ? 1 : -1;
+//   }
+//   return 0 <= parens.length <= 100 && count === 0;
+// };
+
+// пример из кодварса
+// function validParentheses(parens) {
+//   var re = /\(\)/;
+//   while (re.test(parens)) parens = parens.replace(re, "");
+//   return !parens;
+// }
+
+// function validParentheses(parens) {
+//   while (parens.indexOf("()") != -1) {
+//     parens = parens.replace("()", "");
+//   }
+//   return !parens.length;
+// }
+
+// function validParentheses(parens) {
+//   return [...parens].reduce((a, c) => (a + c).replace("()", "")) == ""
+//     ? true
+//     : false;
+// }
+
+// console.log(validParentheses("()")); // *true
+// console.log(validParentheses("())")); // !false
+// console.log(validParentheses("())(")); // !false
+// console.log(validParentheses("(())()")); // *true
+// console.log(validParentheses("()(())(((())))")); // *true
+// console.log(validParentheses("())((())(((())))")); // !false
+// console.log(validParentheses("()()((())()())(())()()()()()(())")); // *true
