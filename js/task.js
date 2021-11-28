@@ -486,3 +486,110 @@
 // console.log(validParentheses("()(())(((())))")); // *true
 // console.log(validParentheses("())((())(((())))")); // !false
 // console.log(validParentheses("()()((())()())(())()()()()()(())")); // *true
+
+/***** Задача 28/11/2021 03:50 *****/
+// What is an anagram? Well, two words are anagrams of each other if they both contain the same letters.
+// For example:
+// "abba" & ("baab" == true);
+// "abba" & ("bbaa" == true);
+// "abba" & ("abbba" == false);
+// "abba" & ("abca" == false);
+// Write a function that will find all the anagrams of a word from a list.
+// You will be given two inputs a word and an array with words.
+// You should return an array of all the anagrams or an empty array if there are none.
+// For example:
+
+// моё решение длинное
+// function anagrams(word, words) {
+//   const result = [];
+//   const original = word.split("").sort().join("");
+//   for (const arr of words) {
+//     if (original === arr.split("").sort().join("")) {
+//       result.push(arr);
+//     }
+//   }
+//   return result;
+// }
+
+// Самая короткая запись
+// let anagrams = (word, words) =>
+//   words.filter(
+//     (w) => w.split("").sort().join("") === word.split("").sort().join("")
+//   );
+
+// console.log(anagrams("abba", ["aabb", "abcd", "bbaa", "dada"])); // ['aabb', 'bbaa']
+// console.log(anagrams("racer", ["crazer", "carer", "racar", "caers", "racer"])); // ['carer', 'racer']
+// console.log(anagrams("laser", ["lazing", "lazy", "lacer"])); // []
+
+/*****28/11/2021*****/
+
+// task 1
+// Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+
+// моё решение
+// const moveZeros = (arr) => {
+//   const brr = arr.filter((a) => a !== 0);
+
+//   arr.forEach((e) => {
+//     if (e === 0) {
+//       brr.push(e);
+//     }
+//   });
+
+//   return brr;
+// };
+
+// короткое красивое решение
+// const moveZeros = (arr) => [
+//   ...arr.filter((val) => val !== 0),
+//   ...arr.filter((val) => val === 0),
+// ];
+
+// обратный reduce()
+// const moveZeros = (arr) =>
+//   arr.reduceRight(
+//     (acc, val) => (val === 0 ? [...acc, val] : [val, ...acc]),
+//     []
+//   );
+
+// console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"])); // [false,1,1,2,1,3,"a",0,0]
+
+// task 2
+// Enough is enough!
+// Alice and Bob were on a holiday. Both of them took many pictures of the places they've been,
+// and now they want to show Charlie their entire collection.However, Charlie doesn't like these sessions, since the motive usually repeats.
+// He isn't fond of seeing the Eiffel tower 40 times.He tells them that he will only sit during the session if they show the same motive at most N times.
+// Luckily, Alice and Bob are able to encode the motive as a number.
+// Can you help them to remove numbers such that their list contains each number only up to N times, without changing the order ?
+// Task
+// Given a list lst and a number N, create a new list that contains each number of lst at most N times without reordering.
+// For example if N = 2, and the input is[1, 2, 3, 1, 2, 1, 2, 3], you take[1, 2, 3, 1, 2],
+// drop the next[1, 2] since this would lead to 1 and 2 being in the result 3 times, and then take 3, which leads to[1, 2, 3, 1, 2, 3].
+
+// моё решение
+// const deleteNth = (arr, n) =>
+//   arr.reduce(
+//     (acc, val) =>
+//       acc.includes(val)
+//         ? acc.filter((e) => e === val).length > n - 1
+//           ? [...acc]
+//           : [...acc, val]
+//         : [...acc, val],
+//     []
+//     );
+
+// надо бы разобрать
+// function deleteNth(arr, x) {
+//   var cache = {};
+//   return arr.filter(function (n) {
+//     cache[n] = (cache[n] || 0) + 1;
+//     return cache[n] <= x;
+//   });
+// }
+
+// console.log(deleteNth([1, 1, 1, 1], 2)); // [1,1]
+// console.log(deleteNth([20, 37, 20, 21], 1)); // [20,37,21]
+// console.log(deleteNth([1, 1, 3, 3, 7, 2, 2, 2, 2], 3)); // [1, 1, 3, 3, 7, 2, 2, 2]
+// console.log(
+//   deleteNth([36, 11, 41, 41, 11, 12, 11, 11, 12, 41, 11, 11, 12, 12, 25, 11], 6)
+// ); // [36, 11, 41, 41, 11, 12, 11, 11, 12, 41, 11, 11, 12, 12, 25]
