@@ -1,0 +1,20 @@
+{
+  "name": "tasks_home",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dmitry-Gorelkin/tasks_home.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dmitry-Gorelkin/tasks_home/issues"
+  },
+  "homepage": "https://github.com/Dmitry-Gorelkin/tasks_home#readme"
+}
